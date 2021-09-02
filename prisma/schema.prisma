@@ -13,7 +13,8 @@ generator client {
 model Entity {
   id String @id @unique @default(cuid())
 
-  type String
+  type  String
+  value String?
 
   entities Entity[] @relation("EntityToEntity")
   Entity   Entity?  @relation("EntityToEntity", fields: [entityId], references: [id])

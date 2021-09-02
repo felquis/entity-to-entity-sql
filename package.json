@@ -2,24 +2,30 @@
   "name": "nexusjs-apollo-server-postgre",
   "version": "1.0.0",
   "main": "index.js",
-  "license": "MIT",
+  "license": "OSL-3.0",
   "scripts": {
-    "initprisma": "prisma init",
-    "prisma:generate": "prisma generate"
+    "nexus": "ts-node --transpile-only src/schema.ts",
+    "preserver": "yarn nexus",
+    "server": "ts-node-dev --transpile-only src/index.ts"
   },
   "dependencies": {
     "@prisma/client": "^2.30.2",
+    "apollo-server-core": "^3.3.0",
     "apollo-server-express": "^3.3.0",
     "dotenv": "^10.0.0",
+    "express": "^4.17.1",
     "graphql": "^15.5.2",
     "graphql-scalars": "^1.10.0",
     "nexus": "^1.1.0",
     "nexus-plugin-prisma": "^0.35.0",
+    "pino": "^6.13.1",
     "prisma": "^2.30.2",
     "ts-node": "^10.2.1",
     "typescript": "^4.4.2"
   },
   "devDependencies": {
-    "prettier": "^2.3.2"
+    "@types/pino": "^6.3.11",
+    "prettier": "^2.3.2",
+    "ts-node-dev": "^1.1.8"
   }
 }
