@@ -25,7 +25,7 @@ const EntityCreate = ({  } : {  }) => {
         entityCreate({
             args: {
                 type: data.type,
-                value: data.valye,
+                value: data.value,
                 entityId: data.entityId,
             }
         }).then(() => {
