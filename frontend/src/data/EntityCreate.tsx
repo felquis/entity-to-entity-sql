@@ -1,6 +1,7 @@
 import React, { useCallback } from 'react';
 import { useForm } from 'react-hook-form';
 import { useMutation } from '../../gqless';
+import ErrorMessage from '../ui/ErrorMessage';
 
 import { refetch } from './EntityList'
 
@@ -47,9 +48,15 @@ const EntityCreate = ({  } : {  }) => {
                 <input {...register('value')} disabled={isLoading} />
             </fieldset>
 
+            <fieldset>
+                <label>Connect to Entity ID</label>
+                <input {...register('entityId')} disabled={isLoading} />
+            </fieldset>
+
+            <ErrorMessage error={error} />
+
             <footer>
-                <button type="reset" disabled={isLoading}>Reset</button>
-                <button type="submit" disabled={isLoading}>{isLoading ? 'Adding' : 'Add'}</button>
+                <button type="reset" disabled={isLoading}>Reset</button> <button type="submit" disabled={isLoading}>{isLoading ? 'Adding' : 'Add'}</button>
             </footer>
         </form>
     );
