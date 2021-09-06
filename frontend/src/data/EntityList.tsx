@@ -31,7 +31,7 @@ const EntityList = () => {
 };
 
 const { usePrepared, refetch, preload } = prepareQuery((query) => {
-    return query.entityList({ first: 1000 })?.nodes?.map((x) => ({...x}))
+    return query.entityList({ first: 1000 })?.nodes?.map(({ ...x}) => ({...x}))
 })
 
 preload()
