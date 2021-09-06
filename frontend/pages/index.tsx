@@ -1,10 +1,12 @@
 import type { NextPage } from 'next'
-import EntityList from '../src/EntityList'
+import EntityCreate from '../src/data/EntityCreate'
+import EntityList from '../src/data/EntityList'
 
 const Home: NextPage = () => {
   return (
     <>
       <EntityList />
+      <EntityCreate />
     </>
   )
 }
