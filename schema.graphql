@@ -69,6 +69,7 @@ type Query {
 
     """Returns the elements in the list that come before the specified cursor"""
     before: String
+    entityId: String
 
     """Returns the first n elements from the list."""
     first: Int

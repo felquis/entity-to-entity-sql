@@ -7,6 +7,7 @@ export const entity = queryType({
             additionalArgs: {
                 type: stringArg(),
                 value: stringArg(),
+                entityId: stringArg(),
             },
             async nodes(root, args, ctx) {
                 return await ctx.prisma.entity.findMany({
@@ -19,6 +20,9 @@ export const entity = queryType({
                         value: {
                             contains: args.value || undefined
                         },
+                        Entity: args.entityId ? {
+                            id: args.entityId
+                        } : null,
                     }
                 })
             }

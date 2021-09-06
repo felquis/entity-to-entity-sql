@@ -160,6 +160,7 @@ export interface NexusGenArgTypes {
     entityList: { // args
       after?: string | null; // String
       before?: string | null; // String
+      entityId?: string | null; // String
       first?: number | null; // Int
       last?: number | null; // Int
       type?: string | null; // String
