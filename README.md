@@ -56,6 +56,20 @@ query list {
 }
 ```
 
+#### Run the front-end
+
+Inside the folder `./frontend` there's a [React](https://reactjs.org/) with [NextJS](https://nextjs.org/) project, follow these commands to run it locally:
+
+```sh
+cd ./frontend
+
+yarn # to install dependencies from package.json
+
+yarn dev # and open http://localhost:3000 inn the browser
+```
+
+Everytime you change a file it will automatically recompile and reload the browser.
+
 ### Studio
 
 Run the command `yarn prisma studio` and open `localhost:5555` at the browser, it will give you a perspective of what is going on with the Entity data.
