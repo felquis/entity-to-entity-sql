@@ -12,9 +12,9 @@ const EntityList = () => {
             <ul>
                 {data?.map((e) => {
                     return (
-                        <div key={e?.id}>
-                            {e?.type}={e?.value}
-                        </div>
+                        <li key={e?.id}>
+                            {e?.type}{e?.value ? `: ${e?.value}` : ''} - {'"'}{e?.id}{'"'}
+                        </li>
                     )
                 })}
 
