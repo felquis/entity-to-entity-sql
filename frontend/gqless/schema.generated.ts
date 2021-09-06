@@ -32,6 +32,7 @@ export const generatedSchema = {
       __args: {
         type: "String",
         value: "String",
+        entityId: "String",
         first: "Int",
         after: "String",
         last: "Int",
@@ -88,7 +89,8 @@ export interface Query {
   __typename: "Query" | undefined;
   entityList: (args?: {
     type?: Maybe<Scalars["String"]>;
-    value?: Maybe<Scalars["String"]>
+    value?: Maybe<Scalars["String"]>;
+    entityId?: Maybe<Scalars["String"]>
     /**
      * Returns the first n elements from the list.
      */;

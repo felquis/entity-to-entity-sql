@@ -1,6 +1,8 @@
 import React from 'react';
 import { prepareQuery } from '../../gqless';
+import EntityRow from '../ui/EntityRow';
 import ErrorMessage from '../ui/ErrorMessage';
+import EntityEntities from './EntityEntities';
 
 const EntityList = () => {
     const { data, isLoading, isRefetching, error } = usePrepared()
@@ -13,7 +15,9 @@ const EntityList = () => {
                 {data?.map((e) => {
                     return (
                         <li key={e?.id}>
-                            {e?.type}{e?.value ? `: ${e?.value}` : ''} - {'"'}{e?.id}{'"'}
+                            <EntityRow entity={{...e, __typename: undefined}} />
+
+                            {e?.id ? <EntityEntities id={e?.id} /> : null}
                         </li>
                     )
                 })}
