@@ -1,27 +1,31 @@
 import React, { useCallback } from "react";
 import { useForm } from "react-hook-form";
-import { useMutation } from "../../gqless";
+import { Entity, useMutation } from "../../gqless";
 import ErrorMessage from "../ui/ErrorMessage";
-
 import { refetch } from "./EntityList";
 
-const EntityCreate = ({}: {}) => {
-  const { handleSubmit, register } = useForm();
+const EntityCreate = ({
+  setParentState,
+  parentEntity,
+}: {
+  parentEntity?: Entity;
+  setParentState?: Function;
+}) => {
+  const { handleSubmit, register } = useForm({
+    defaultValues: {
+      type: "",
+      value: "",
+      entityId: parentEntity?.id,
+    },
+  });
 
   const [entityCreate, { isLoading, error }] = useMutation(
-    (
-      mutation,
-      {
-        type,
-        value,
-        entityId,
-      }: {
-        type: string;
-        value: string;
-        entityId?: string;
-      }
-    ) => {
-      const data = mutation.entityCreate({ type, value, entityId });
+    (mutation, args: { type: string; value: string; entityId: string }) => {
+      const data = mutation.entityCreate({
+        type: args.type,
+        value: args.value,
+        entityId: args.entityId,
+      });
 
       return { ...data };
     }
@@ -36,42 +40,45 @@ const EntityCreate = ({}: {}) => {
           entityId: data.entityId,
         },
       }).then(() => {
+        setParentState && setParentState(false);
         refetch();
       });
     },
-    [entityCreate]
+    [entityCreate, setParentState]
   );
 
   return (
-    <form onSubmit={handleSubmit(onSubmit)}>
-      <h2>EntityCreate</h2>
-
-      <fieldset>
-        <label>Type</label>
-        <input {...register("type", { required: true })} disabled={isLoading} />
-      </fieldset>
-
-      <fieldset>
-        <label>Value</label>
-        <input {...register("value")} disabled={isLoading} />
-      </fieldset>
-
-      <fieldset>
-        <label>Connect to Entity ID</label>
-        <input {...register("entityId")} disabled={isLoading} />
-      </fieldset>
-
-      <ErrorMessage error={error} />
-
-      <footer>
-        <button type="reset" disabled={isLoading}>
-          Reset
+    <>
+      <form onSubmit={handleSubmit(onSubmit)}>
+        <h3>Add</h3>
+        <fieldset>
+          <label>Type:</label>
+          <input
+            {...register("type", { required: true })}
+            disabled={isLoading}
+          />
+        </fieldset>
+        <fieldset>
+          <label>Value:</label>
+          <input
+            {...register("value", { required: false })}
+            disabled={isLoading}
+          />
+        </fieldset>
+        <input {...register("entityId", { required: false })} hidden />
+        <ErrorMessage error={error} />
+        <button
+          type="reset"
+          onClick={() => setParentState && setParentState(false)}
+          disabled={isLoading}
+        >
+          cancel
         </button>{" "}
         <button type="submit" disabled={isLoading}>
           {isLoading ? "Adding" : "Add"}
         </button>
-      </footer>
-    </form>
+      </form>
+    </>
   );
 };
 

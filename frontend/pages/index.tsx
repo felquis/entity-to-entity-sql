@@ -1,14 +1,9 @@
-import type { NextPage } from 'next'
-import EntityCreate from '../src/data/EntityCreate'
-import EntityList from '../src/data/EntityList'
+import type { NextPage } from "next";
+
+import EntityList from "../src/data/EntityList";
 
 const Home: NextPage = () => {
-  return (
-    <>
-      <EntityList />
-      <EntityCreate />
-    </>
-  )
-}
+  return <EntityList />;
+};
 
-export default Home
+export default Home;

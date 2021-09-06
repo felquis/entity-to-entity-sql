@@ -2,6 +2,7 @@ import React from 'react';
 import { prepareQuery } from '../../gqless';
 import EntityRow from '../ui/EntityRow';
 import ErrorMessage from '../ui/ErrorMessage';
+import EntityAdd from './EntityCreate';
 import EntityEntities from './EntityEntities';
 
 const EntityList = () => {
@@ -26,6 +27,8 @@ const EntityList = () => {
             </ul>
 
             <ErrorMessage error={error} />
+
+            <EntityAdd />
         </section>
     );
 };

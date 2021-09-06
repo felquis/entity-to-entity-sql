@@ -41,7 +41,7 @@ const EntityEdit = ({
         },
       }).then(() => {
         setParentState(false);
-        refetch()
+        refetch();
       });
     },
     [setParentState, entityEdit, entity]
@@ -49,6 +49,7 @@ const EntityEdit = ({
 
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
+      <h3>Edit</h3>
       <fieldset>
         <label>Type:</label>
         <input {...register("type", { required: true })} />
