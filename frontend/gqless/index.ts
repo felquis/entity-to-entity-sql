@@ -3,7 +3,7 @@
  */
 
 import { createReactClient } from "@gqless/react";
-
+import { createSubscriptionsClient } from "@gqless/subscriptions";
 import { createClient, QueryFetcher } from "gqless";
 import {
   generatedSchema,
@@ -32,6 +32,21 @@ const queryFetcher: QueryFetcher = async function (query, variables) {
   return json;
 };
 
+const subscriptionsClient =
+  typeof window !== "undefined"
+    ? createSubscriptionsClient({
+        wsEndpoint: () => {
+          // Modify if needed
+          const url = new URL(
+            "http://localhost:4000/graphql",
+            window.location.href
+          );
+          url.protocol = url.protocol.replace("http", "ws");
+          return url.href;
+        },
+      })
+    : undefined;
+
 export const client = createClient<
   GeneratedSchema,
   SchemaObjectTypesNames,
@@ -40,6 +55,7 @@ export const client = createClient<
   schema: generatedSchema,
   scalarsEnumsHash,
   queryFetcher,
+  subscriptionsClient,
 });
 
 export const { query, mutation, mutate, subscription, resolved, refetch } =
@@ -57,6 +73,7 @@ export const {
   prepareReactRender,
   useHydrateCache,
   prepareQuery,
+  useSubscription,
 } = createReactClient<GeneratedSchema>(client, {
   defaults: {
     // Set this flag as "true" if your usage involves React Suspense

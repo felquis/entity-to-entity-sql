@@ -58,7 +58,10 @@ export const generatedSchema = {
     },
     entityDelete: { __type: "Entity", __args: { id: "String!" } },
   },
-  subscription: {},
+  subscription: {
+    __typename: { __type: "String!" },
+    truths: { __type: "Boolean" },
+  },
   Entity: {
     __typename: { __type: "String!" },
     id: { __type: "String" },
@@ -129,6 +132,7 @@ export interface Mutation {
 
 export interface Subscription {
   __typename: "Subscription" | undefined;
+  truths?: Maybe<ScalarsEnums["Boolean"]>;
 }
 
 export interface Entity {

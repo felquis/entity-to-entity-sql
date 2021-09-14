@@ -4,6 +4,7 @@ import EntityRow from '../ui/EntityRow';
 import ErrorMessage from '../ui/ErrorMessage';
 import EntityAdd from './EntityCreate';
 import EntityEntities from './EntityEntities';
+import SubscriptionTest from './SubscriptionTest';
 
 const EntityList = () => {
     const { data, isLoading, isRefetching, error } = usePrepared()
@@ -29,6 +30,8 @@ const EntityList = () => {
             <ErrorMessage error={error} />
 
             <EntityAdd />
+            <hr />
+            <SubscriptionTest />
         </section>
     );
 };

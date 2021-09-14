@@ -80,3 +80,7 @@ type Query {
     value: String
   ): EntityConnection
 }
+
+type Subscription {
+  truths: Boolean
+}

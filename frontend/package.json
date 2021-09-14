@@ -12,6 +12,7 @@
   },
   "dependencies": {
     "@gqless/react": "^2.0.15",
+    "@gqless/subscriptions": "^1.0.11",
     "gqless": "^2.0.14",
     "next": "11.1.2",
     "react": "17.0.2",

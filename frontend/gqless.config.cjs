@@ -9,7 +9,7 @@ const config = {
     headers: {},
   },
   destination: "./gqless/index.ts",
-  subscriptions: false,
+  subscriptions: true,
   javascriptOutput: false,
 };
 

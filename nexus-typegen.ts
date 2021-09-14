@@ -64,6 +64,7 @@ export interface NexusGenObjects {
     startCursor?: string | null; // String
   }
   Query: {};
+  Subscription: {};
 }
 
 export interface NexusGenInterfaces {
@@ -105,6 +106,9 @@ export interface NexusGenFieldTypes {
   Query: { // field return type
     entityList: NexusGenRootTypes['EntityConnection'] | null; // EntityConnection
   }
+  Subscription: { // field return type
+    truths: boolean | null; // Boolean
+  }
 }
 
 export interface NexusGenFieldTypeNames {
@@ -135,6 +139,9 @@ export interface NexusGenFieldTypeNames {
   }
   Query: { // field return type name
     entityList: 'EntityConnection'
+  }
+  Subscription: { // field return type name
+    truths: 'Boolean'
   }
 }
 
