@@ -107,7 +107,7 @@ export interface NexusGenFieldTypes {
     entityList: NexusGenRootTypes['EntityConnection'] | null; // EntityConnection
   }
   Subscription: { // field return type
-    truths: boolean | null; // Boolean
+    entity: NexusGenRootTypes['Entity'] | null; // Entity
   }
 }
 
@@ -141,7 +141,7 @@ export interface NexusGenFieldTypeNames {
     entityList: 'EntityConnection'
   }
   Subscription: { // field return type name
-    truths: 'Boolean'
+    entity: 'Entity'
   }
 }
 
@@ -172,6 +172,11 @@ export interface NexusGenArgTypes {
       last?: number | null; // Int
       type?: string | null; // String
       value?: string | null; // String
+    }
+  }
+  Subscription: {
+    entity: { // args
+      entityId: string; // String!
     }
   }
 }

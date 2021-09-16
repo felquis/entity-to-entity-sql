@@ -82,5 +82,5 @@ type Query {
 }
 
 type Subscription {
-  truths: Boolean
+  entity(entityId: String!): Entity
 }
