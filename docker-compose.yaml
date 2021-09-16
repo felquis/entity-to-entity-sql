@@ -10,3 +10,10 @@ services:
       POSTGRES_PASSWORD: root
       POSTGRES_DB: defaultdb
 
+  redis:
+    image: redis:6.0-alpine
+    ports:
+     - "6379:6379"
+    environment:
+      - REDIS_REPLICATION_MODE=master
+
