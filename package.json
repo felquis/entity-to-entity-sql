@@ -5,7 +5,6 @@
   "license": "OSL-3.0",
   "scripts": {
     "nexus": "ts-node --transpile-only src/schema.ts",
-    "preserver": "yarn nexus",
     "server": "ts-node-dev --transpile-only src/index.ts"
   },
   "dependencies": {
@@ -15,7 +14,10 @@
     "dotenv": "^10.0.0",
     "express": "^4.17.1",
     "graphql": "^15.5.2",
+    "graphql-redis-subscriptions": "^2.4.0",
     "graphql-scalars": "^1.10.0",
+    "graphql-subscriptions": "^1.2.1",
+    "ioredis": "^4.27.9",
     "nexus": "^1.1.0",
     "nexus-plugin-prisma": "^0.35.0",
     "pino": "^6.13.1",
@@ -25,6 +27,7 @@
     "typescript": "^4.4.2"
   },
   "devDependencies": {
+    "@types/ioredis": "^4.27.2",
     "@types/pino": "^6.3.11",
     "prettier": "^2.3.2",
     "ts-node-dev": "^1.1.8"
