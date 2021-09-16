@@ -60,7 +60,7 @@ export const generatedSchema = {
   },
   subscription: {
     __typename: { __type: "String!" },
-    truths: { __type: "Boolean" },
+    entity: { __type: "Entity", __args: { entityId: "String!" } },
   },
   Entity: {
     __typename: { __type: "String!" },
@@ -132,7 +132,7 @@ export interface Mutation {
 
 export interface Subscription {
   __typename: "Subscription" | undefined;
-  truths?: Maybe<ScalarsEnums["Boolean"]>;
+  entity: (args: { entityId: Scalars["String"] }) => Maybe<Entity>;
 }
 
 export interface Entity {

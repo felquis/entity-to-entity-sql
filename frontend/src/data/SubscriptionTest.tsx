@@ -1,8 +1,15 @@
-import {useSubscription} from "../../gqless"
+import { useSubscription } from "../../gqless";
 
 export default function SubscriptionTest() {
-  const { truths } = useSubscription()
+  const { entity } = useSubscription();
 
-  return <>Testi {truths ? `something: ${truths}` : 'nothing'}</>
+  const update = entity({
+    entityId: "test",
+  });
+
+  return (
+    <>
+      {update?.type}
+    </>
+  );
 }
-

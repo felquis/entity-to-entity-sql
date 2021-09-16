@@ -1,51 +1,49 @@
-import React from 'react';
-import { prepareQuery } from '../../gqless';
-import EntityRow from '../ui/EntityRow';
-import ErrorMessage from '../ui/ErrorMessage';
-import EntityAdd from './EntityCreate';
-import EntityEntities from './EntityEntities';
-import SubscriptionTest from './SubscriptionTest';
+import React from "react";
+import { prepareQuery } from "../../gqless";
+import EntityRow from "../ui/EntityRow";
+import ErrorMessage from "../ui/ErrorMessage";
+import EntityAdd from "./EntityCreate";
+import EntityEntities from "./EntityEntities";
+import SubscriptionTest from "./SubscriptionTest";
 
 const EntityList = () => {
-    const { data, isLoading, isRefetching, error } = usePrepared()
+  const { data, isLoading, isRefetching, error } = usePrepared();
 
-    return (
-        <section>
-            <h2>Entities</h2>
+  return (
+    <section>
+      <h2>Entities</h2>
 
-            <ul>
-                {data?.map((e) => {
-                    return (
-                        <li key={e?.id}>
-                            <EntityRow entity={{...e, __typename: undefined}} />
+      <ul>
+        {data?.map((e) => {
+          return (
+            <li key={e?.id}>
+              <EntityRow entity={{ ...e, __typename: undefined }} />
 
-                            {e?.id ? <EntityEntities id={e?.id} /> : null}
-                        </li>
-                    )
-                })}
+              {e?.id ? <EntityEntities id={e?.id} /> : null}
+            </li>
+          );
+        })}
 
-                {(isLoading || isRefetching) ? 'Loading...' : ''}
-            </ul>
+        {isLoading || isRefetching ? "Loading..." : ""}
+      </ul>
 
-            <ErrorMessage error={error} />
+      <ErrorMessage error={error} />
 
-            <EntityAdd />
-            <hr />
-            <SubscriptionTest />
-        </section>
-    );
+      <EntityAdd />
+      <hr />
+      <SubscriptionTest />
+    </section>
+  );
 };
 
 const { usePrepared, refetch, preload } = prepareQuery((query) => {
-    return query.entityList({ first: 1000 })?.nodes?.map(({ ...x}) => ({...x}))
-})
+  return query
+    .entityList({ first: 1000 })
+    ?.nodes?.map(({ ...x }) => ({ ...x }));
+});
 
-preload()
+preload();
 
-export {
-    refetch,
-    usePrepared,
-    preload,
-}
+export { refetch, usePrepared, preload };
 
 export default EntityList;
