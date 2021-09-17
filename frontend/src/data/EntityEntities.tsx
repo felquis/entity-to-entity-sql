@@ -1,5 +1,5 @@
 import React from 'react';
-import { EntityConnection, useQuery } from '../../gqless';
+import { EntityConnection, useQuery } from '../../gqty';
 import EntityRow from '../ui/EntityRow';
 
 const EntityEntities = ({ id }: { id: string; }) => {

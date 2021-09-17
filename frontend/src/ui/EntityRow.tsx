@@ -1,5 +1,5 @@
 import React, { useCallback, useRef, useState } from "react";
-import { Entity, useMutation } from "../../gqless";
+import { Entity, useMutation } from "../../gqty";
 import EntityCreate from "../data/EntityCreate";
 import EntityEdit from "../data/EntityEdit";
 import { refetch } from "../data/EntityList";

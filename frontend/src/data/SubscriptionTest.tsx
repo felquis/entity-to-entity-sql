@@ -1,4 +1,4 @@
-import { useSubscription } from "../../gqless";
+import { useSubscription } from "../../gqty";
 
 export default function SubscriptionTest() {
   const { entity } = useSubscription();

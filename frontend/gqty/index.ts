@@ -1,10 +1,10 @@
 /**
- * GQLESS: You can safely modify this file and Query Fetcher based on your needs
+ * GQTY: You can safely modify this file and Query Fetcher based on your needs
  */
 
-import { createReactClient } from "@gqless/react";
-import { createSubscriptionsClient } from "@gqless/subscriptions";
-import { createClient, QueryFetcher } from "gqless";
+import { createReactClient } from "@gqty/react";
+import { createSubscriptionsClient } from "@gqty/subscriptions";
+import { createClient, QueryFetcher } from "gqty";
 import {
   generatedSchema,
   scalarsEnumsHash,
@@ -58,8 +58,15 @@ export const client = createClient<
   subscriptionsClient,
 });
 
-export const { query, mutation, mutate, subscription, resolved, refetch } =
-  client;
+export const {
+  query,
+  mutation,
+  mutate,
+  subscription,
+  resolved,
+  refetch,
+  track,
+} = client;
 
 export const {
   graphql,

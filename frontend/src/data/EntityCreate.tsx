@@ -1,6 +1,6 @@
 import React, { useCallback } from "react";
 import { useForm } from "react-hook-form";
-import { Entity, useMutation } from "../../gqless";
+import { Entity, useMutation } from "../../gqty";
 import ErrorMessage from "../ui/ErrorMessage";
 import { refetch } from "./EntityList";
 

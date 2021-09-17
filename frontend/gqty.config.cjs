@@ -1,5 +1,5 @@
 /**
- * @type {import("@gqless/cli").GQlessConfig}
+ * @type {import("@gqty/cli").GQtyConfig}
  */
 const config = {
   react: true,
@@ -8,7 +8,7 @@ const config = {
     endpoint: "http://localhost:4000/graphql",
     headers: {},
   },
-  destination: "./gqless/index.ts",
+  destination: "./gqty/index.ts",
   subscriptions: true,
   javascriptOutput: false,
 };

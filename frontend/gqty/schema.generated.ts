@@ -1,15 +1,17 @@
 /**
- * GQLESS AUTO-GENERATED CODE: PLEASE DO NOT MODIFY MANUALLY
+ * GQTY AUTO-GENERATED CODE: PLEASE DO NOT MODIFY MANUALLY
  */
 
 export type Maybe<T> = T | null;
 export type Exact<T extends { [key: string]: unknown }> = {
   [K in keyof T]: T[K];
 };
-export type MakeOptional<T, K extends keyof T> = Omit<T, K> &
-  { [SubKey in K]?: Maybe<T[SubKey]> };
-export type MakeMaybe<T, K extends keyof T> = Omit<T, K> &
-  { [SubKey in K]: Maybe<T[SubKey]> };
+export type MakeOptional<T, K extends keyof T> = Omit<T, K> & {
+  [SubKey in K]?: Maybe<T[SubKey]>;
+};
+export type MakeMaybe<T, K extends keyof T> = Omit<T, K> & {
+  [SubKey in K]: Maybe<T[SubKey]>;
+};
 /** All built-in and custom scalars, mapped to their actual values */
 export interface Scalars {
   ID: string;
@@ -19,7 +21,7 @@ export interface Scalars {
   Float: number;
 }
 
-export const scalarsEnumsHash: import("gqless").ScalarsEnumsHash = {
+export const scalarsEnumsHash: import("gqty").ScalarsEnumsHash = {
   String: true,
   Int: true,
   Boolean: true,
@@ -89,7 +91,7 @@ export const generatedSchema = {
 } as const;
 
 export interface Query {
-  __typename: "Query" | undefined;
+  __typename?: "Query";
   entityList: (args?: {
     type?: Maybe<Scalars["String"]>;
     value?: Maybe<Scalars["String"]>;
@@ -114,7 +116,7 @@ export interface Query {
 }
 
 export interface Mutation {
-  __typename: "Mutation" | undefined;
+  __typename?: "Mutation";
   entityCreate: (args: {
     type: Scalars["String"];
     value?: Maybe<Scalars["String"]>;
@@ -131,19 +133,19 @@ export interface Mutation {
 }
 
 export interface Subscription {
-  __typename: "Subscription" | undefined;
+  __typename?: "Subscription";
   entity: (args: { entityId: Scalars["String"] }) => Maybe<Entity>;
 }
 
 export interface Entity {
-  __typename: "Entity" | undefined;
+  __typename?: "Entity";
   id?: Maybe<ScalarsEnums["String"]>;
   value?: Maybe<ScalarsEnums["String"]>;
   type?: Maybe<ScalarsEnums["String"]>;
 }
 
 export interface EntityConnection {
-  __typename: "EntityConnection" | undefined;
+  __typename?: "EntityConnection";
   /**
    * https://facebook.github.io/relay/graphql/connections.htm#sec-Edge-Types
    */
@@ -159,7 +161,7 @@ export interface EntityConnection {
 }
 
 export interface EntityEdge {
-  __typename: "EntityEdge" | undefined;
+  __typename?: "EntityEdge";
   /**
    * https://facebook.github.io/relay/graphql/connections.htm#sec-Cursor
    */
@@ -174,7 +176,7 @@ export interface EntityEdge {
  * PageInfo cursor, as defined in https://facebook.github.io/relay/graphql/connections.htm#sec-undefined.PageInfo
  */
 export interface PageInfo {
-  __typename: "PageInfo" | undefined;
+  __typename?: "PageInfo";
   /**
    * Used to indicate whether more edges exist following the set defined by the clients arguments.
    */

@@ -1,5 +1,5 @@
 import React from "react";
-import { prepareQuery } from "../../gqless";
+import { prepareQuery } from "../../gqty";
 import EntityRow from "../ui/EntityRow";
 import ErrorMessage from "../ui/ErrorMessage";
 import EntityAdd from "./EntityCreate";
