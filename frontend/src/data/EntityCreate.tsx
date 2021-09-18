@@ -2,14 +2,15 @@ import React, { useCallback } from "react";
 import { useForm } from "react-hook-form";
 import { Entity, useMutation } from "../../gqty";
 import ErrorMessage from "../ui/ErrorMessage";
-import { refetch } from "./EntityList";
 
 const EntityCreate = ({
   setParentState,
   parentEntity,
+  refetch,
 }: {
   parentEntity?: Entity;
   setParentState?: Function;
+  refetch?: Function;
 }) => {
   const { handleSubmit, register } = useForm({
     defaultValues: {
@@ -41,10 +42,15 @@ const EntityCreate = ({
         },
       }).then(() => {
         setParentState && setParentState(false);
-        refetch();
+
+        if (refetch) {
+          console.log("child of entityId", data.entityId);
+
+          refetch();
+        }
       });
     },
-    [entityCreate, setParentState]
+    [entityCreate, setParentState, refetch]
   );
 
   return (

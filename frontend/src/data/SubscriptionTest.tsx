@@ -7,9 +7,5 @@ export default function SubscriptionTest() {
     entityId: "test",
   });
 
-  return (
-    <>
-      {update?.type}
-    </>
-  );
+  return <>{update?.type}</>;
 }

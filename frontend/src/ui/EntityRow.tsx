@@ -2,9 +2,14 @@ import React, { useCallback, useRef, useState } from "react";
 import { Entity, useMutation } from "../../gqty";
 import EntityCreate from "../data/EntityCreate";
 import EntityEdit from "../data/EntityEdit";
-import { refetch } from "../data/EntityList";
 
-const EntityRow = ({ entity }: { entity?: Entity }) => {
+const EntityRow = ({
+  entity,
+  refetch,
+}: {
+  entity?: Entity;
+  refetch?: Function;
+}) => {
   const selectRef = useRef<HTMLSelectElement>(null);
   const [showEditForm, setEditForm] = useState(false);
   const [showAddForm, setAddForm] = useState(false);
@@ -30,9 +35,11 @@ const EntityRow = ({ entity }: { entity?: Entity }) => {
         id: entity?.id || "",
       },
     }).then(() => {
-      refetch();
+      if (refetch) {
+        refetch();
+      }
     });
-  }, [entityDelete, entity]);
+  }, [entityDelete, entity, refetch]);
 
   const onChange = useCallback(
     (event) => {
@@ -56,7 +63,7 @@ const EntityRow = ({ entity }: { entity?: Entity }) => {
   return (
     <>
       <div>
-        <span style={{marginInlineEnd: '0.5rem'}}>
+        <span style={{ marginInlineEnd: "0.5rem" }}>
           {entity?.type}
           {entity?.value ? `: ${entity?.value}` : ""}
         </span>
@@ -80,6 +87,7 @@ const EntityRow = ({ entity }: { entity?: Entity }) => {
         <EntityCreate
           parentEntity={{ ...entity, __typename: undefined }}
           setParentState={setAddForm}
+          refetch={() => refetch && refetch()}
         />
       ) : null}
     </>

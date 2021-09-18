@@ -2,7 +2,6 @@ import React, { useCallback } from "react";
 import { useForm } from "react-hook-form";
 import { Entity, useMutation } from "../../gqty";
 import ErrorMessage from "../ui/ErrorMessage";
-import { refetch } from "./EntityList";
 
 const EntityEdit = ({
   entity,
@@ -41,7 +40,8 @@ const EntityEdit = ({
         },
       }).then(() => {
         setParentState(false);
-        refetch();
+
+        // todo: refetch
       });
     },
     [setParentState, entityEdit, entity]
