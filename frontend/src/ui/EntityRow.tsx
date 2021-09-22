@@ -2,6 +2,7 @@ import React, { useCallback, useRef, useState } from "react";
 import { Entity, useMutation } from "../../gqty";
 import EntityCreate from "../data/EntityCreate";
 import EntityEdit from "../data/EntityEdit";
+import EntityEntities from "../data/EntityEntities";
 
 const EntityRow = ({
   entity,
@@ -90,6 +91,8 @@ const EntityRow = ({
           refetch={() => refetch && refetch()}
         />
       ) : null}
+
+      {entity?.id ? <EntityEntities id={entity?.id} /> : null}
     </>
   );
 };

@@ -31,10 +31,10 @@ const EntityEntitiesList = ({
 }) => {
   return (
     <>
-      {list?.nodes?.map((e) => {
+      {list?.nodes?.map((entity) => {
         return (
           <li
-            key={e?.id}
+            key={entity?.id}
             style={{
               border: "1px solid",
               borderTopWidth: 0,
@@ -42,11 +42,9 @@ const EntityEntitiesList = ({
             }}
           >
             <EntityRow
-              entity={{ ...e, __typename: undefined }}
+              entity={{ ...entity, __typename: undefined }}
               refetch={refetch}
             />
-
-            {e?.id ? <EntityEntities id={e?.id} /> : null}
           </li>
         );
       })}
