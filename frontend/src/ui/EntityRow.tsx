@@ -1,5 +1,5 @@
 import React, { useCallback, useRef, useState } from "react";
-import { Entity, useMutation } from "../../gqty";
+import { Entity, useMutation, useQuery, useRefetch } from "../../gqty";
 import EntityCreate from "../data/EntityCreate";
 import EntityEdit from "../data/EntityEdit";
 import EntityEntities from "../data/EntityEntities";
@@ -61,6 +61,13 @@ const EntityRow = ({
     [selectRef, onDelete, onEdit, onAdd]
   );
 
+  const query = useQuery();
+  const childRefetch = useRefetch();
+  const childList = query.entityList({ first: 100, entityId: entity?.id });
+  const refetchChildList = useCallback(() => {
+    childRefetch(childList);
+  }, []);
+
   return (
     <>
       <div>
@@ -88,11 +95,13 @@ const EntityRow = ({
         <EntityCreate
           parentEntity={{ ...entity, __typename: undefined }}
           setParentState={setAddForm}
-          refetch={() => refetch && refetch()}
+          refetch={refetchChildList}
         />
       ) : null}
 
-      {entity?.id ? <EntityEntities id={entity?.id} /> : null}
+      {entity?.id ? (
+        <EntityEntities id={entity?.id} childEntities={childList} />
+      ) : null}
     </>
   );
 };
