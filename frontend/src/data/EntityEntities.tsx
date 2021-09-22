@@ -1,54 +1,28 @@
 import React, { useCallback } from "react";
-import { EntityConnection, useQuery, useRefetch } from "../../gqty";
-import EntityRow from "../ui/EntityRow";
-import EntityCreate from "./EntityCreate";
+import { EntityConnection, useRefetch } from "../../gqty";
+import ChildEntityList from "../ui/ChildEntityList";
+import RootEntityList from "../ui/RootEntityList";
 
-const EntityEntities = ({ id }: { id?: string }) => {
-  const query = useQuery();
+const EntityEntities = ({
+  id,
+  childEntities,
+}: {
+  id?: string;
+  childEntities?: EntityConnection | null;
+}) => {
   const refetch = useRefetch();
-
-  const list = query.entityList({ first: 100, entityId: id });
+  const list = childEntities;
 
   const refetchList = useCallback(() => {
     refetch(list);
   }, []);
 
-  return (
+  return id ? (
     <ul>
-      <EntityEntitiesList list={list} refetch={refetchList} />
-
-      {!id ? <EntityCreate refetch={refetchList} /> : null}
+      <ChildEntityList list={list} refetch={refetchList} />
     </ul>
-  );
-};
-
-const EntityEntitiesList = ({
-  list,
-  refetch,
-}: {
-  list?: EntityConnection | null;
-  refetch?: Function;
-}) => {
-  return (
-    <>
-      {list?.nodes?.map((entity) => {
-        return (
-          <li
-            key={entity?.id}
-            style={{
-              border: "1px solid",
-              borderTopWidth: 0,
-              padding: "0.5rem",
-            }}
-          >
-            <EntityRow
-              entity={{ ...entity, __typename: undefined }}
-              refetch={refetch}
-            />
-          </li>
-        );
-      })}
-    </>
+  ) : (
+    <RootEntityList />
   );
 };
 
