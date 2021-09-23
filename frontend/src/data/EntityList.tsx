@@ -1,6 +1,5 @@
 import React from "react";
 import EntityEntities from "./EntityEntities";
-import SubscriptionTest from "./SubscriptionTest";
 
 const EntityList = () => {
   return (
@@ -8,10 +7,6 @@ const EntityList = () => {
       <h2>Entities</h2>
 
       <EntityEntities />
-
-      <hr />
-
-      <SubscriptionTest />
     </section>
   );
 };
