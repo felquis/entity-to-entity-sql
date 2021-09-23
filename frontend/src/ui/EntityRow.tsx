@@ -100,7 +100,11 @@ const EntityRow = ({
       ) : null}
 
       {entity?.id ? (
-        <EntityEntities id={entity?.id} childEntities={childList} />
+        <EntityEntities
+          id={entity?.id}
+          childEntities={childList}
+          refetch={refetchChildList}
+        />
       ) : null}
     </>
   );
