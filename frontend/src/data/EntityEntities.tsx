@@ -10,7 +10,7 @@ const EntityEntities = ({
 }: {
   id?: string;
   childEntities?: EntityConnection | null;
-  refetch: Function;
+  refetch?: Function;
 }) => {
   return id ? (
     <ul>
