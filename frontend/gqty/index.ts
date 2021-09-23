@@ -3,6 +3,7 @@
  */
 
 import { createReactClient } from "@gqty/react";
+import { createLogger } from "@gqty/logger";
 import { createSubscriptionsClient } from "@gqty/subscriptions";
 import { createClient, QueryFetcher } from "gqty";
 import {
@@ -93,3 +94,5 @@ export const {
 });
 
 export * from "./schema.generated";
+
+createLogger(client, {}).start();
