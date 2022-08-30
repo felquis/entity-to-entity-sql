@@ -3,6 +3,7 @@
  */
 
 export type Maybe<T> = T | null;
+export type InputMaybe<T> = Maybe<T>;
 export type Exact<T extends { [key: string]: unknown }> = {
   [K in keyof T]: T[K];
 };
@@ -22,59 +23,22 @@ export interface Scalars {
 }
 
 export const scalarsEnumsHash: import("gqty").ScalarsEnumsHash = {
-  String: true,
-  Int: true,
   Boolean: true,
+  Int: true,
+  String: true,
 };
 export const generatedSchema = {
-  query: {
-    __typename: { __type: "String!" },
-    entityList: {
-      __type: "EntityConnection",
-      __args: {
-        type: "String",
-        value: "String",
-        entityId: "String",
-        first: "Int",
-        after: "String",
-        last: "Int",
-        before: "String",
-      },
-    },
-  },
-  mutation: {
-    __typename: { __type: "String!" },
-    entityCreate: {
-      __type: "Entity",
-      __args: { type: "String!", value: "String", entityId: "String" },
-    },
-    entityUpdate: {
-      __type: "Entity",
-      __args: {
-        id: "String!",
-        type: "String!",
-        value: "String",
-        connectedEntityId: "String",
-        disconnectedEntityId: "String",
-      },
-    },
-    entityDelete: { __type: "Entity", __args: { id: "String!" } },
-  },
-  subscription: {
-    __typename: { __type: "String!" },
-    entity: { __type: "Entity", __args: { entityId: "String!" } },
-  },
   Entity: {
     __typename: { __type: "String!" },
     id: { __type: "String" },
-    value: { __type: "String" },
     type: { __type: "String" },
+    value: { __type: "String" },
   },
   EntityConnection: {
     __typename: { __type: "String!" },
     edges: { __type: "[EntityEdge]" },
-    pageInfo: { __type: "PageInfo!" },
     nodes: { __type: "[Entity]" },
+    pageInfo: { __type: "PageInfo!" },
   },
   EntityEdge: {
     __typename: { __type: "String!" },
@@ -83,65 +47,55 @@ export const generatedSchema = {
   },
   PageInfo: {
     __typename: { __type: "String!" },
+    endCursor: { __type: "String" },
     hasNextPage: { __type: "Boolean!" },
     hasPreviousPage: { __type: "Boolean!" },
     startCursor: { __type: "String" },
-    endCursor: { __type: "String" },
+  },
+  mutation: {
+    __typename: { __type: "String!" },
+    entityCreate: {
+      __type: "Entity",
+      __args: { entityId: "String", type: "String!", value: "String" },
+    },
+    entityDelete: { __type: "Entity", __args: { id: "String!" } },
+    entityUpdate: {
+      __type: "Entity",
+      __args: {
+        connectedEntityId: "String",
+        disconnectedEntityId: "String",
+        id: "String!",
+        type: "String!",
+        value: "String",
+      },
+    },
+  },
+  query: {
+    __typename: { __type: "String!" },
+    entityList: {
+      __type: "EntityConnection",
+      __args: {
+        after: "String",
+        before: "String",
+        entityId: "String",
+        first: "Int",
+        last: "Int",
+        type: "String",
+        value: "String",
+      },
+    },
+  },
+  subscription: {
+    __typename: { __type: "String!" },
+    entity: { __type: "Entity", __args: { entityId: "String!" } },
   },
 } as const;
-
-export interface Query {
-  __typename?: "Query";
-  entityList: (args?: {
-    type?: Maybe<Scalars["String"]>;
-    value?: Maybe<Scalars["String"]>;
-    entityId?: Maybe<Scalars["String"]>
-    /**
-     * Returns the first n elements from the list.
-     */;
-    first?: Maybe<Scalars["Int"]>
-    /**
-     * Returns the elements in the list that come after the specified cursor
-     */;
-    after?: Maybe<Scalars["String"]>
-    /**
-     * Returns the last n elements from the list.
-     */;
-    last?: Maybe<Scalars["Int"]>
-    /**
-     * Returns the elements in the list that come before the specified cursor
-     */;
-    before?: Maybe<Scalars["String"]>;
-  }) => Maybe<EntityConnection>;
-}
-
-export interface Mutation {
-  __typename?: "Mutation";
-  entityCreate: (args: {
-    type: Scalars["String"];
-    value?: Maybe<Scalars["String"]>;
-    entityId?: Maybe<Scalars["String"]>;
-  }) => Maybe<Entity>;
-  entityUpdate: (args: {
-    id: Scalars["String"];
-    type: Scalars["String"];
-    value?: Maybe<Scalars["String"]>;
-    connectedEntityId?: Maybe<Scalars["String"]>;
-    disconnectedEntityId?: Maybe<Scalars["String"]>;
-  }) => Maybe<Entity>;
-  entityDelete: (args: { id: Scalars["String"] }) => Maybe<Entity>;
-}
-
-export interface Subscription {
-  __typename?: "Subscription";
-  entity: (args: { entityId: Scalars["String"] }) => Maybe<Entity>;
-}
 
 export interface Entity {
   __typename?: "Entity";
   id?: Maybe<ScalarsEnums["String"]>;
-  value?: Maybe<ScalarsEnums["String"]>;
   type?: Maybe<ScalarsEnums["String"]>;
+  value?: Maybe<ScalarsEnums["String"]>;
 }
 
 export interface EntityConnection {
@@ -151,13 +105,13 @@ export interface EntityConnection {
    */
   edges?: Maybe<Array<Maybe<EntityEdge>>>;
   /**
-   * https://facebook.github.io/relay/graphql/connections.htm#sec-undefined.PageInfo
-   */
-  pageInfo: PageInfo;
-  /**
    * Flattened list of Entity type
    */
   nodes?: Maybe<Array<Maybe<Entity>>>;
+  /**
+   * https://facebook.github.io/relay/graphql/connections.htm#sec-undefined.PageInfo
+   */
+  pageInfo: PageInfo;
 }
 
 export interface EntityEdge {
@@ -178,6 +132,10 @@ export interface EntityEdge {
 export interface PageInfo {
   __typename?: "PageInfo";
   /**
+   * The cursor corresponding to the last nodes in edges. Null if the connection is empty.
+   */
+  endCursor?: Maybe<ScalarsEnums["String"]>;
+  /**
    * Used to indicate whether more edges exist following the set defined by the clients arguments.
    */
   hasNextPage: ScalarsEnums["Boolean"];
@@ -189,29 +147,72 @@ export interface PageInfo {
    * The cursor corresponding to the first nodes in edges. Null if the connection is empty.
    */
   startCursor?: Maybe<ScalarsEnums["String"]>;
-  /**
-   * The cursor corresponding to the last nodes in edges. Null if the connection is empty.
-   */
-  endCursor?: Maybe<ScalarsEnums["String"]>;
+}
+
+export interface Mutation {
+  __typename?: "Mutation";
+  entityCreate: (args: {
+    entityId?: Maybe<Scalars["String"]>;
+    type: Scalars["String"];
+    value?: Maybe<Scalars["String"]>;
+  }) => Maybe<Entity>;
+  entityDelete: (args: { id: Scalars["String"] }) => Maybe<Entity>;
+  entityUpdate: (args: {
+    connectedEntityId?: Maybe<Scalars["String"]>;
+    disconnectedEntityId?: Maybe<Scalars["String"]>;
+    id: Scalars["String"];
+    type: Scalars["String"];
+    value?: Maybe<Scalars["String"]>;
+  }) => Maybe<Entity>;
+}
+
+export interface Query {
+  __typename?: "Query";
+  entityList: (args?: {
+    /**
+     * Returns the elements in the list that come after the specified cursor
+     */
+    after?: Maybe<Scalars["String"]>;
+    /**
+     * Returns the elements in the list that come before the specified cursor
+     */
+    before?: Maybe<Scalars["String"]>;
+    entityId?: Maybe<Scalars["String"]>;
+    /**
+     * Returns the first n elements from the list.
+     */
+    first?: Maybe<Scalars["Int"]>;
+    /**
+     * Returns the last n elements from the list.
+     */
+    last?: Maybe<Scalars["Int"]>;
+    type?: Maybe<Scalars["String"]>;
+    value?: Maybe<Scalars["String"]>;
+  }) => Maybe<EntityConnection>;
+}
+
+export interface Subscription {
+  __typename?: "Subscription";
+  entity: (args: { entityId: Scalars["String"] }) => Maybe<Entity>;
 }
 
 export interface SchemaObjectTypes {
-  Query: Query;
-  Mutation: Mutation;
-  Subscription: Subscription;
   Entity: Entity;
   EntityConnection: EntityConnection;
   EntityEdge: EntityEdge;
+  Mutation: Mutation;
   PageInfo: PageInfo;
+  Query: Query;
+  Subscription: Subscription;
 }
 export type SchemaObjectTypesNames =
-  | "Query"
-  | "Mutation"
-  | "Subscription"
   | "Entity"
   | "EntityConnection"
   | "EntityEdge"
-  | "PageInfo";
+  | "Mutation"
+  | "PageInfo"
+  | "Query"
+  | "Subscription";
 
 export interface GeneratedSchema {
   query: Query;
