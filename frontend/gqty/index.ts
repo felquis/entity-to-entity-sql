@@ -59,17 +59,12 @@ export const client = createClient<
   subscriptionsClient,
 });
 
-export const {
-  query,
-  mutation,
-  mutate,
-  subscription,
-  resolved,
-  refetch,
-  track,
-} = client;
+const { query, mutation, mutate, subscription, resolved, refetch, track } =
+  client;
 
-export const {
+export { query, mutation, mutate, subscription, resolved, refetch, track };
+
+const {
   graphql,
   useQuery,
   usePaginatedQuery,
@@ -92,6 +87,21 @@ export const {
     staleWhileRevalidate: false,
   },
 });
+
+export {
+  graphql,
+  useQuery,
+  usePaginatedQuery,
+  useTransactionQuery,
+  useLazyQuery,
+  useRefetch,
+  useMutation,
+  useMetaState,
+  prepareReactRender,
+  useHydrateCache,
+  prepareQuery,
+  useSubscription,
+};
 
 export * from "./schema.generated";
 
