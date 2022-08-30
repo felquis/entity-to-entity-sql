@@ -1,13 +1,12 @@
 import { connectionPlugin, makeSchema } from "nexus";
-import { nexusPrisma } from "nexus-plugin-prisma";
 
 import * as path from "path";
 import * as types from "./graphql";
 
-export const schema = makeSchema({
+const schema = makeSchema({
   types: { ...types },
-  plugins: [nexusPrisma(), connectionPlugin({ includeNodesField: true })],
-  // shouldExitAfterGenerateArtifacts: true,
+  plugins: [connectionPlugin({ includeNodesField: true })],
+  shouldExitAfterGenerateArtifacts: true,
   sourceTypes: {
     modules: [{ module: ".prisma/client", alias: "PrismaClient" }],
   },
@@ -20,3 +19,5 @@ export const schema = makeSchema({
     schema: path.join(__dirname, "..", "schema.graphql"),
   },
 });
+
+export { schema };
